@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dithering Photo App</title>
+    <meta name="description" content="Transform your images with various dithering filters and color palettes. Upload, paste, or drag and drop your photos to create unique retro-style artwork.">
+    <meta name="keywords" content="dithering, photo filter, image processing, retro graphics, pixel art">
+    <meta name="author" content="Your Name or Company Name">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:title" content="Dithering Photo App">
+    <meta property="og:description" content="Transform your images with various dithering filters and color palettes. Create unique retro-style artwork.">
+    <meta property="og:image" content="/ogImage.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourdomain.com/">
+    <meta property="twitter:title" content="Dithering Photo App">
+    <meta property="twitter:description" content="Transform your images with various dithering filters and color palettes. Create unique retro-style artwork.">
+    <meta property="twitter:image" content="/ogImage.jpg">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <div id="content-wrapper">
+            <div id="image-container">
+                <div id="upload-area">
+                    <p>Drop an image here, or use the buttons below to upload or paste</p>
+                </div>
+                <div id="result-container">
+                    <img id="result-image" src="" alt="">
+                    <div id="loading-indicator" class="hidden">Processing...</div>
+                </div>
+                <div id="original-container" class="hidden">
+                    <img id="original-image" src="" alt="">
+                </div>
+            </div>
+            <div id="settings-container">
+                <div id="upload-buttons">
+                    <button id="upload-button">Upload Image</button>
+                    <button id="paste-button">Paste from Clipboard</button>
+                </div>
+                <input type="file" id="image-input" accept="image/*" style="display: none;">
+                <select id="dithering-filter">
+                    <option value="ordered">Ordered</option>
+                    <option value="floyd-steinberg">Floyd-Steinberg</option>
+                    <option value="atkinson">Atkinson</option>
+                </select>
+                <select id="color-palette">
+                    <option value="bw">Black and White</option>
+                    <option value="obra-dinn">Obra Dinn</option>
+                    <option value="cga">CGA</option>
+                    <option value="amiga">Amiga Workbench</option>
+                    <option value="rgb-dither">RGB Dither</option>
+                    <option value="cmyk-dither">CMYK Dither</option>
+                    <option value="3-bit-dither">3 Bit Dither</option>
+                    <option value="gameboy">GameBoy™</option>
+                    <option value="teletext">Teletext</option>
+                    <option value="apple-ii">Apple II</option>
+                    <option value="commodore-64">Commodore 64</option>
+                    <option value="zx-spectrum">ZX Spectrum</option>
+                    <option value="6-bit-rgb">6 Bit RGB</option>
+                    <option value="vaporwave">Vaporwave</option>
+                    <option value="hacker">Hacker</option>
+                </select>
+                <label for="dithering-size">Dithering Size</label>
+                <input type="range" id="dithering-size" min="1" max="50" value="1">
+                <label for="brightness">Brightness</label>
+                <input type="range" id="brightness" min="-100" max="100" value="0">
+                <label for="contrast">Contrast</label>
+                <input type="range" id="contrast" min="-100" max="100" value="0">
+                <div id="button-container">
+                    <button id="reset-button">Reset</button>
+                    <button id="export-button">Export</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
