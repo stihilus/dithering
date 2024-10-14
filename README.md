@@ -4,6 +4,8 @@
 
 The Dithering Photo App is a web-based application that allows users to apply various dithering filters and color palettes to their images. Users can upload, paste, or drag and drop images to create unique retro-style artwork.
 
+<img width="1020" alt="image" src="https://github.com/user-attachments/assets/85745d97-85e8-4ddd-a549-c51da96e013e">
+
 ## Features
 
 - Multiple dithering algorithms: Ordered, Floyd-Steinberg, and Atkinson
