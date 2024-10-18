@@ -1,5 +1,7 @@
 # Dithering Photo App
 
+Check app on : https://stihilus.github.io/dithering/
+
 ## Description
 
 The Dithering Photo App is a web-based application that allows users to apply various dithering filters and color palettes to their images. Users can upload, paste, or drag and drop images to create unique retro-style artwork.
