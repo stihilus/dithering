@@ -310,10 +310,29 @@ function resetSettings() {
 }
 
 function exportImage() {
-    const link = document.createElement('a');
-    link.download = 'dithered_image.png';
-    link.href = canvas.toDataURL();
-    link.click();
+    // Create the download URL
+    const imageData = canvas.toDataURL('image/png');
+    
+    // Check if running on iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    
+    if (isIOS) {
+        // For iOS devices, open image in new tab
+        window.open(imageData);
+    } else {
+        // For other devices, try download
+        try {
+            const link = document.createElement('a');
+            link.download = 'dithered_image.png';
+            link.href = imageData;
+            document.body.appendChild(link); // Append link to body
+            link.click();
+            document.body.removeChild(link); // Clean up
+        } catch (e) {
+            // Fallback: open in new tab
+            window.open(imageData);
+        }
+    }
 }
 
 // Initialize with default settings
