@@ -310,29 +310,40 @@ function resetSettings() {
 }
 
 function exportImage() {
-    // Create the download URL
-    const imageData = canvas.toDataURL('image/png');
+    // Get the canvas data
+    const imageData = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
     
-    // Check if running on iOS
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    // Create blob from the image data
+    const blob = dataURLtoBlob(imageData);
     
-    if (isIOS) {
-        // For iOS devices, open image in new tab
-        window.open(imageData);
+    // Try to use the download API if available (modern browsers)
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(blob, 'dithered_image.png');
     } else {
-        // For other devices, try download
-        try {
-            const link = document.createElement('a');
-            link.download = 'dithered_image.png';
-            link.href = imageData;
-            document.body.appendChild(link); // Append link to body
-            link.click();
-            document.body.removeChild(link); // Clean up
-        } catch (e) {
-            // Fallback: open in new tab
-            window.open(imageData);
-        }
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'dithered_image.png';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => {
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+        }, 100);
     }
+}
+
+// Helper function to convert dataURL to Blob
+function dataURLtoBlob(dataURL) {
+    const arr = dataURL.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
 }
 
 // Initialize with default settings
